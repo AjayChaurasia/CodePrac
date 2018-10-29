@@ -1,0 +1,105 @@
+swagger: '2.0'
+info:
+  version: v-1.1.0
+  title: Ballon Store
+host: api.nytimes.com
+basePath: /v3
+tags:
+  - name: Ballon
+    description: Everything about Ballon
+schemes:
+  - http
+paths:
+  /Ballon:
+    post:
+      tags:
+        - Ballon
+      summary: Create 
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Create 
+          required: true
+          schema:
+            $ref: '#/definitions/Ballon'
+      responses:
+        '200':
+          description: successful inserted!!
+  '/Ballon/{colour}':        
+    put:
+      tags:
+        - Ballon
+      summary: Update your Ballon
+      produces:
+        - application/json
+      parameters:
+        - name: colour
+          in: path
+          description: colour
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Updated Ballon
+          required: true
+          schema:
+            $ref: '#/definitions/Ballon'
+      responses:
+        '200':
+          description: successful found
+        '400':
+          description: Invalid value
+        '404':
+          description: Book Not Found!!
+    get:
+      tags:
+        - Ballon
+      summary: Search your Ballon
+      produces:
+        - application/json
+      parameters:
+        - name: colour
+          in: path
+          description: colour
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful found
+          schema:
+            type: string
+            items:
+              $ref: '#/definitions/Ballon'
+        '400':
+          description: Invalid value
+        '404':
+          description: Book Not Found!!
+    delete:
+      tags:
+        - Ballon
+      summary: Delete Ballon
+      produces:
+        - application/json
+      parameters:
+        - name: colour
+          in: path
+          description: colour
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful deleted!!
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+definitions:
+  Ballon:
+    type: object
+    properties:
+      colour:
+        type: string
+    xml:
+      name: Ballon
